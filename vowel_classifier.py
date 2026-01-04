@@ -1,5 +1,3 @@
-"""MediaPipe の顔ランドマークから日本語母音を分類するためのユーティリティ。"""
-
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -23,7 +21,7 @@ OUTER_LIP_LOOP = [
 
 @dataclass(frozen=True)
 class MouthFeatures:
-    """唇ランドマークから算出した正規化幾何特徴量。"""
+# 正規化幾何特徴量
 
     vertical: float
     horizontal: float
@@ -67,7 +65,7 @@ def _euclidean_distance(p1: Tuple[float, float], p2: Tuple[float, float]) -> flo
 
 
 def _polygon_area(points: Sequence[Tuple[float, float]]) -> float:
-    """シューレース公式により、多角形の符号なし面積を返す。"""
+    # シューレース公式により、多角形の符号なし面積を返す。
     if len(points) < 3:
         return 0.0
     area = 0.0
@@ -161,7 +159,6 @@ def classify_vowel_from_landmarks(
     landmarks: Sequence[object],
     profiles: Mapping[str, MouthFeatures] | None = None,
 ) -> Tuple[str, MouthFeatures, Dict[str, float]]:
-    """特徴量抽出から母音分類までをまとめて行うヘルパー。"""
 
     features = extract_mouth_features(landmarks)
     vowel, distances = classify_vowel_by_profiles(features, profiles=profiles)

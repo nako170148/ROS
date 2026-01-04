@@ -20,8 +20,7 @@ from vowel_classifier import (
     set_calibrated_profiles,
 )
 
-# MediaPipe Tasks の顔ランドマークモデルのパス。ダウンロード先:
-# https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/latest/face_landmarker.task
+# MediaPipe Tasks の顔ランドマークモデルのパス
 MODEL_PATH = "face_landmarker.task"
 
 WINDOW_NAME = "MediaPipe Lip Landmarks"
@@ -54,7 +53,7 @@ EYE_CORNER_INDICES = {
 
 
 def landmarks_to_pixels(landmarks, image_width, image_height, indices):
-    """指定したランドマーク番号をピクセル座標のリストに変換する。"""
+# 指定したランドマーク番号をピクセル座標のリストに変換する
     return [
         (
             int(landmarks[index].x * image_width),
@@ -69,7 +68,7 @@ def run_calibration(
     landmarker: FaceLandmarker,
     start_timestamp_ms: int,
 ) -> int:
-    """起動時に母音サンプルを収集し、個人向け重心（プロファイル）を作成する。"""
+    # 起動時に母音サンプルを収集し、個人のプロファイルを作成する。
 
     timestamp_ms = start_timestamp_ms
     calibrated = get_calibrated_profiles()
